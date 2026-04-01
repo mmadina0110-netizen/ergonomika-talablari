@@ -1,1 +1,610 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergonomika va Mehnat Gigiyenasi | Kompyuter bilan ishlash talablari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #2c3e50;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav ul li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav ul li a:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Cards */
+        .category {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header h2 {
+            font-size: 1.8rem;
+        }
+
+        .category-header .toggle-icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+        }
+
+        .category-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        /* Tables */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .info-table th, .info-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-table th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        .info-table tr:hover {
+            background: #f1f3f5;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .image-card {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .image-card p {
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Video Links */
+        .video-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .video-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .video-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .qr-code {
+            display: inline-block;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .checklist-item input {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav ul li a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .category-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .info-table th, .info-table td {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏢 Kompyuter bilan ishlashda inson sog‘lig‘i talablari</h1>
+        <p>Gigiyena | Ergonomika | Texnika | Psixologiya | Tashkiliy jihatlar</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem;">📋 Me’yoriy talablar asosida ishlab chiqilgan interaktiv qo‘llanma</p>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="#gigiyenik">🧼 Gigiyenik</a></li>
+            <li><a href="#ergonomik">🪑 Ergonomik</a></li>
+            <li><a href="#texnik">💻 Texnik</a></li>
+            <li><a href="#psixologik">🧠 Psixologik</a></li>
+            <li><a href="#tashkiliy">📅 Tashkiliy</a></li>
+            <li><a href="#umumiy">✅ Umumiy checklist</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- 1. GIGIYENIK TALABLAR -->
+        <div id="gigiyenik" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>🧼 1. Gigiyenik talablar</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <h3>📊 Me’yoriy ko‘rsatkichlar</h3>
+                <table class="info-table">
+                    <tr><th>Parametr</th><th>Me’yoriy qiymat</th><th>Normativ hujjat</th></tr>
+                    <tr><td>Havo harorati (yoz)</td><td>23-25°C</td><td>SanPiN 0360-19</td></tr>
+                    <tr><td>Havo harorati (qish)</td><td>22-24°C</td><td>SanPiN 0360-19</td></tr>
+                    <tr><td>Nisbiy namlik</td><td>40-60%</td><td>SanPiN 0360-19</td></tr>
+                    <tr><td>Havo tezligi</td><td>0.1-0.2 m/s</td><td>SanPiN 0360-19</td></tr>
+                    <tr><td>CO₂ miqdori</td><td>≤ 1000 ppm</td><td>O‘z DSt 1106:2017</td></tr>
+                    <tr><td>Yoritish</td><td>300-500 lyuks</td><td>SanPiN 0219-08</td></tr>
+                    <tr><td>Shovqin darajasi</td><td>≤ 50 dB</td><td>SanPiN 0360-19</td></tr>
+                </table>
+
+                <h3>🖼️ Tasviriy materiallar</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400" alt="Termometr joylashuvi">
+                        <p>Ish joyida termometr joylashuvi</p>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400" alt="Havo namligi">
+                        <p>Havo namligi va sog‘liqqa ta’siri</p>
+                    </div>
+                </div>
+
+                <h3>🎥 Foydali videolar</h3>
+                <div class="video-list">
+                    <a href="https://www.youtube.com/watch?v=2nJQrqPqT3A" target="_blank" class="video-link">📺 Kompyuter xonalarida mikroiqlim talablari</a>
+                    <a href="https://www.youtube.com/watch?v=UWQ7kKQhQKM" target="_blank" class="video-link">📺 Ish joyida havo sifatini nazorat qilish</a>
+                </div>
+
+                <div class="qr-section">
+                    <h4>📱 QR kod orqali ko‘rish</h4>
+                    <div class="qr-code" id="qr-gigiyenik"></div>
+                    <p><small>QR kodni skanerlab, ushbu bo‘limni telefoningizda oching</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ERGONOMIK TALABLAR -->
+        <div id="ergonomik" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>🪑 2. Ergonomik talablar</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <h3>📊 Me’yoriy ko‘rsatkichlar</h3>
+                <table class="info-table">
+                    <tr><th>Parametr</th><th>Me’yoriy qiymat</th><th>Normativ hujjat</th></tr>
+                    <tr><td>Stul balandligi</td><td>Oyoq polga tegadi, tizza 90°</td><td>ISO 9241-11</td></tr>
+                    <tr><td>Stul bel tayanchi</td><td>Lumbar qo‘llab-quvvatlash</td><td>ISO 6385</td></tr>
+                    <tr><td>Stol balandligi</td><td>74-76 sm (sozlanuvchi ideal)</td><td>O‘z DSt 30341:2017</td></tr>
+                    <tr><td>Monitor balandligi</td><td>Ko‘z sathidan 15-20° past</td><td>ISO 9241-5</td></tr>
+                    <tr><td>Monitor masofasi</td><td>50-70 sm (qo‘l uzunligi)</td><td>ISO 9241-5</td></tr>
+                    <tr><td>Klaviatura</td><td>Bilek tayanchi, 10-15° qiyalik</td><td>ANSI/HFES 100</td></tr>
+                </table>
+
+                <h3>🖼️ Tasviriy materiallar</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400" alt="To‘g‘ri ish holati">
+                        <p>To‘g‘ri ish holati sxemasi</p>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1589384267710-7a170981ca78?w=400" alt="Ergonomik stul">
+                        <p>Ergonomik stul qismlari</p>
+                    </div>
+                </div>
+
+                <h3>🎥 Foydali videolar</h3>
+                <div class="video-list">
+                    <a href="https://www.youtube.com/watch?v=3xQn5qYyJz8" target="_blank" class="video-link">📺 Ergonomik ish joyini sozlash</a>
+                    <a href="https://www.youtube.com/watch?v=LU_KD1enR3Q" target="_blank" class="video-link">📺 To‘g‘ri ish holati bo‘yicha qo‘llanma</a>
+                </div>
+
+                <div class="qr-section">
+                    <h4>📱 QR kod orqali ko‘rish</h4>
+                    <div class="qr-code" id="qr-ergonomik"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. TEXNIK TALABLAR -->
+        <div id="texnik" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>💻 3. Texnik talablar</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <h3>📊 Me’yoriy ko‘rsatkichlar</h3>
+                <table class="info-table">
+                    <tr><th>Parametr</th><th>Me’yoriy qiymat</th><th>Normativ hujjat</th></tr>
+                    <tr><td>Monitor diagonali</td><td>≥ 19 dyuym</td><td>O‘z DSt 30341:2017</td></tr>
+                    <tr><td>Yangilanish chastotasi</td><td>≥ 60 Hz</td><td>ISO 9241-307</td></tr>
+                    <tr><td>Yoritish bir xilligi</td><td>≥ 0.7 (uniformity)</td><td>ISO 9241-307</td></tr>
+                    <tr><td>Elektromagnit maydon</td><td>≤ 25 V/m (50 Hz)</td><td>SanPiN 0219-08</td></tr>
+                    <tr><td>Shovqin (texnik)</td><td>≤ 50 dBA</td><td>SanPiN 0360-19</td></tr>
+                </table>
+
+                <h3>🖼️ Tasviriy materiallar</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400" alt="Monitor sozlamalari">
+                        <p>Monitor sozlamalari paneli</p>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400" alt="Ish joyi yoritilishi">
+                        <p>Ish joyi yoritilishi sxemasi</p>
+                    </div>
+                </div>
+
+                <h3>🎥 Foydali videolar</h3>
+                <div class="video-list">
+                    <a href="https://www.youtube.com/watch?v=GQqRrFQrQ3A" target="_blank" class="video-link">📺 Monitor sozlamalari bo‘yicha tavsiyalar</a>
+                    <a href="https://www.youtube.com/watch?v=8FmJ1qXyJ8Q" target="_blank" class="video-link">📺 Ish joyida yoritishni tashkil etish</a>
+                </div>
+
+                <div class="qr-section">
+                    <h4>📱 QR kod orqali ko‘rish</h4>
+                    <div class="qr-code" id="qr-texnik"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. PSIXOLOGIK TALABLAR -->
+        <div id="psixologik" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>🧠 4. Psixologik talablar</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <h3>📊 Tavsiyalar</h3>
+                <table class="info-table">
+                    <tr><th>Parametr</th><th>Tavsiya</th><th>Manba</th></tr>
+                    <tr><td>Ish yuklamasi</td><td>Kuniga 6 soatdan ko‘p bo‘lmagan samarali ish</td><td>ILO tavsiyalari</td></tr>
+                    <tr><td>Tanaffuslar</td><td>Har 45 daqiqada 10-15 daqiqa</td><td>Mehnat kodeksi</td></tr>
+                    <tr><td>Ko‘z gimnastikasi</td><td>Har 20 daqiqada 20 sekund uzoqqa qarash</td><td>20-20-20 qoidasi</td></tr>
+                    <tr><td>Stressni boshqarish</td><td>Ishlab chiqarishda psixologik xizmat</td><td>Mehnatni muhofaza qilish qonuni</td></tr>
+                </table>
+
+                <h3>🖼️ Tasviriy materiallar</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=400" alt="Ish joyidagi stress">
+                        <p>Ish joyidagi stress belgilari</p>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d5082f2?w=400" alt="Ko‘z gimnastikasi">
+                        <p>Ko‘z gimnastikasi mashqlari</p>
+                    </div>
+                </div>
+
+                <h3>🎥 Foydali videolar</h3>
+                <div class="video-list">
+                    <a href="https://www.youtube.com/watch?v=YF5Yg6jF4z0" target="_blank" class="video-link">📺 20-20-20 qoidasi bo‘yicha ko‘z mashqlari</a>
+                    <a href="https://www.youtube.com/watch?v=oD8fDqE5k8U" target="_blank" class="video-link">📺 Ish joyida stressni boshqarish usullari</a>
+                </div>
+
+                <div class="qr-section">
+                    <h4>📱 QR kod orqali ko‘rish</h4>
+                    <div class="qr-code" id="qr-psixologik"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. TASHKILIY TALABLAR -->
+        <div id="tashkiliy" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>📅 5. Tashkiliy talablar</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <h3>📊 Tavsiyalar</h3>
+                <table class="info-table">
+                    <tr><th>Parametr</th><th>Tavsiya</th><th>Normativ hujjat</th></tr>
+                    <tr><td>Ish kuni davomiyligi</td><td>8 soat (5 kunlik)</td><td>Mehnat kodeksi, 120-modda</td></tr>
+                    <tr><td>Tanaffuslar</td><td>Har 2 soatda 15 daqiqa</td><td>Mehnat kodeksi, 121-modda</td></tr>
+                    <tr><td>Maxsus tanaffus (kompyuter)</td><td>Har 45 daqiqada 10 daqiqa</td><td>SanPiN 0360-19</td></tr>
+                    <tr><td>Yillik tibbiy ko‘rik</td><td>1 marta / yil</td><td>SSV buyrug‘i</td></tr>
+                </table>
+
+                <h3>🖼️ Tasviriy materiallar</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400" alt="Ish va dam olish">
+                        <p>Ish va dam olish rejimi jadvali</p>
+                    </div>
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400" alt="Tibbiy ko‘rik">
+                        <p>Tibbiy ko‘rik taqvimi</p>
+                    </div>
+                </div>
+
+                <h3>🎥 Foydali videolar</h3>
+                <div class="video-list">
+                    <a href="https://www.youtube.com/watch?v=wZ0hI6jF1sQ" target="_blank" class="video-link">📺 Samarali ish rejimini tashkil etish</a>
+                    <a href="https://www.youtube.com/watch?v=3P8j7q8qQ9Q" target="_blank" class="video-link">📺 Ish joyida tanaffuslarni tashkil etish</a>
+                </div>
+
+                <div class="qr-section">
+                    <h4>📱 QR kod orqali ko‘rish</h4>
+                    <div class="qr-code" id="qr-tashkiliy"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. UMUMIY CHECKLIST -->
+        <div id="umumiy" class="category">
+            <div class="category-header" onclick="toggleCategory(this)">
+                <h2>✅ 6. Umumiy tekshirish ro‘yxati (Checklist)</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check1">
+                        <label for="check1">🌡️ Havo harorati 22-24°C</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check2">
+                        <label for="check2">💧 Havo namligi 40-60%</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check3">
+                        <label for="check3">🪑 Stul balandligi sozlangan (oyoq polga tegadi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check4">
+                        <label for="check4">📺 Monitor ko‘z sathidan past (15-20°)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check5">
+                        <label for="check5">📏 Monitor masofasi 50-70 sm</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check6">
+                        <label for="check6">💡 Yoritish 300-500 lyuks</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check7">
+                        <label for="check7">⏰ Har 45 daqiqada tanaffus qilinadi</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check8">
+                        <label for="check8">👁️ Ko‘z gimnastikasi bajariladi (20-20-20 qoidasi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check9">
+                        <label for="check9">🏥 Tibbiy ko‘rik o‘tkazilgan (yiliga 1 marta)</label>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; text-align: center; color: #27ae60;">
+                    ✅ Har bir punktni belgilang va ish joyingiz xavfsizligini tekshiring!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Avtomatlashtirilgan ishchi o‘rinlari (AIO') | Ma'lumotlarni sezish, anomaly detection tizimi, Ergonomika</p>
+        <p>📚 Normativ asos: SanPiN 0360-19, ISO 9241-11, O‘z DSt 30341:2017, Mehnat kodeksi</p>
+        <p>🔗 Barcha rasmlar Unsplash platformasidan, videolar YouTube orqali integratsiya qilingan</p>
+    </div>
+
+    <script>
+        // Toggle category content
+        function toggleCategory(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                icon.textContent = '▲';
+            }
+        }
+
+        // Generate QR codes (simple representation)
+        // In real implementation, you would use a QR code library
+        // For now, we'll add text placeholders that can be replaced with actual QR images
+        const qrSections = document.querySelectorAll('.qr-section .qr-code');
+        const currentUrl = window.location.href;
+        
+        // Add QR code information (in a real implementation, use QR code generation API)
+        qrSections.forEach((qr, index) => {
+            const categories = ['gigiyenik', 'ergonomik', 'texnik', 'psixologik', 'tashkiliy'];
+            if (index < categories.length) {
+                const sectionUrl = currentUrl + '#' + categories[index];
+                qr.innerHTML = `<div style="font-size: 0.8rem; padding: 10px; background: #fff; border-radius: 8px;">
+                                    📱 QR kod: ${sectionUrl}<br>
+                                    <small>(QR kod generator orqali yaratish mumkin)</small>
+                                </div>`;
+            } else {
+                qr.innerHTML = `<div style="font-size: 0.8rem;">📱 QR kod generator orqali yaratiladi</div>`;
+            }
+        });
+        
+        // Auto-open first category
+        const firstContent = document.querySelector('.category-content');
+        if (firstContent) {
+            firstContent.classList.add('active');
+            const firstIcon = document.querySelector('.category-header .toggle-icon');
+            if (firstIcon) firstIcon.textContent = '▲';
+        }
+    </script>
+</body>
+</html>
