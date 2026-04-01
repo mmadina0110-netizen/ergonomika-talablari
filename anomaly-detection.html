@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomaly Detection Tizimi | Ish joyida xavfsizlik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: #2980b9;
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            padding: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .info-table th, .info-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .info-table th {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .method-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .method-card h4 {
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .architecture {
+            background: #0a0a2a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+
+        .footer {
+            background: #0f2027;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-header {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Anomaly Detection Tizimi</h1>
+        <p>Ish joylarida xavfsizlikni ta’minlash uchun noodatiy yoki shubhalarni topish metodlari</p>
+        <a href="index.html" class="back-link">← Asosiy sahifaga qaytish</a>
+    </div>
+
+    <div class="container">
+        <!-- Anomaliya turlari -->
+        <div class="card">
+            <div class="card-header">⚠️ Anomaliya turlari</div>
+            <div class="card-content">
+                <table class="info-table">
+                    <tr><th>Anomaliya turi</th><th>Tavsif</th><th>Aniqlash usuli</th></tr>
+                    <tr><td>Fiziologik</td><td>Yurak urish tezligi o‘zgarishi, harakatlarda sustkashlik</td><td>Smartwatch, IoT sensorlar</td></tr>
+                    <tr><td>Ergonomik</td><td>Noto‘g‘ri ish holati, uzoq vaqt harakatsizlik</td><td>Videoanalitika, postura sensorlari</td></tr>
+                    <tr><td>Atrof-muhit</td><td>Havo sifati keskin pasayishi, yorug‘lik o‘zgarishi</td><td>CO₂, yorug‘lik, harorat sensorlari</td></tr>
+                    <tr><td>Xatti-harakatlar</td><td>G‘ayrioddiy sustkashlik yoki haddan tashqari asabiylashish</td><td>Mashinaviy o‘qitish (xulq-atvor tahlili)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Aniqlash metodlari -->
+        <div class="card">
+            <div class="card-header">🛠️ Anomaliyalarni aniqlash metodlari</div>
+            <div class="card-content">
+                <div class="method-grid">
+                    <div class="method-card">
+                        <h4>📡 Sensor asosidagi metodlar</h4>
+                        <p>IoT qurilmalar: postura sensorlari, harakat detektorlari, CO₂ sensorlari, yurak urishi monitorlari</p>
+                    </div>
+                    <div class="method-card">
+                        <h4>🎥 Videoanalitika</h4>
+                        <p>Kompyuter ko‘rish orqali ishchi holatini kuzatish (MediaPipe, OpenPose, YOLO)</p>
+                    </div>
+                    <div class="method-card">
+                        <h4>📊 Statistik metodlar</h4>
+                        <p>Vaqt qatorlarida o‘rtachadan chetlanishlar: Z-score, IQR, Moving Average</p>
+                    </div>
+                    <div class="method-card">
+                        <h4>🤖 Mashinaviy o‘qitish</h4>
+                        <p>Isolation Forest, Autoencoder, One-Class SVM, LSTM (vaqt qatorlari)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tizim arxitekturasi -->
+        <div class="card">
+            <div class="card-header">🏗️ Anomaly detection tizimi arxitekturasi</div>
+            <div class="card-content">
+                <div class="architecture">
+                    <p>📡 Sensorlar / Kameralar</p>
+                    <p>↓</p>
+                    <p>📥 Ma’lumotlarni yig‘ish (MQTT, Kafka)</p>
+                    <p>↓</p>
+                    <p>🧹 Oldindan ishlash (filtrlash, normalizatsiya)</p>
+                    <p>↓</p>
+                    <p>🧠 Deteksiya modeli (Isolation Forest / Autoencoder)</p>
+                    <p>↓</p>
+                    <p>⚠️ Ogohlantirish tizimi (Dashboard, SMS, Smartwatch)</p>
+                    <p>↓</p>
+                    <p>🪑 Ergonomik tavsiyalar / Xavfsizlik choralari</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tavsiyalar -->
+        <div class="card">
+            <div class="card-header">📋 Amaliy tavsiyalar</div>
+            <div class="card-content">
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Bosqichma-bosqich joriy etish:</strong> Pilot loyiha sifatida 1-2 ish joyida sinovdan o‘tkazish</li>
+                    <li><strong>Maxfiylik masalalari:</strong> Video kuzatuvda faqat skelet (pose) ma’lumotlarini saqlash, yuzni aniqlashdan qochish</li>
+                    <li><strong>Real vaqt rejimi:</strong> Chetlanish aniqlanganda ishchining o‘ziga smartwatch yoki ekranda yumshoq bildirishnoma</li>
+                    <li><strong>Ergo-AI Agent:</strong> “20 daqiqadir, o‘rningizdan turing” yoki “elkangizni tushiring” kabi tavsiyalar</li>
+                    <li><strong>Kognitiv yukni kamaytirish:</strong> Anomaliyalar nafaqat xavfsizlik xodimiga, balki ishchiga shaxsiy kabinet orqali maslahat sifatida</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Solishtirma jadval -->
+        <div class="card">
+            <div class="card-header">📊 Metodlarni solishtirish</div>
+            <div class="card-content">
+                <table class="info-table">
+                    <tr><th>Metod</th><th>Afzalliklari</th><th>Cheklovlari</th></tr>
+                    <tr><td>Sensor asosida</td><td>Aniq, real vaqt, avtomatik</td><td>Qurilmalar narxi, texnik xizmat</td></tr>
+                    <tr><td>Videoanalitika</td><td>Qo‘shimcha qurilma talab qilmaydi, ko‘p ma’lumot</td><td>Maxfiylik muammolari, yorug‘likka bog‘liq</td></tr>
+                    <tr><td>Statistik</td><td>Oddiy, tushunarli, tez</td><td>Murakkab anomaliyalarni topmaydi</td></tr>
+                    <tr><td>Mashinaviy o‘qitish</td><td>Murakkab patternlarni aniqlaydi, moslashuvchan</td><td>Ko‘p ma’lumot talab qiladi, o‘qitish vaqti</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🔍 Anomaly detection tizimi | Ish joylarida xavfsizlik va ergonomika</p>
+        <p>📚 Tavsiyalar: ISO 6385, ISO 9241-11, Mehnatni muhofaza qilish qonuni asosida ishlab chiqilgan</p>
+        <p><a href="index.html" style="color: #3498db;">← Asosiy sahifaga qaytish</a></p>
+    </div>
+</body>
+</html>
